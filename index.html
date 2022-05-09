@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page</title>
+  </head>
+  <body>
+    <div id="display-time"></div>
+    <button id="stop-time">
+      Stop
+    </button>
+  </body>
+  <script>
+    const id = setInterval(() => {
+      let d = new Date();
+      let formatter = Intl.DateTimeFormat(
+        "default", // a locale name; "default" chooses automatically
+        {
+          weekday: "short",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric"
+        }
+      );
+      const datetime = formatter.format(d);
+      document.getElementsByTagName("div")[0].textContent = datetime;
+      document.title = datetime;
+    }, 30000);
+    document.getElementsByTagName("button")[0].addEventListener("click", () => {
+      clearInterval(id);
+    });
+  </script>
+</html>
